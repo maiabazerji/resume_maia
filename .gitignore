@@ -1,0 +1,23 @@
+# LaTeX / latexmk
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Ancienne photo de secours (ne pas versionner)
+data/profile_photo_backup_blackbg.jpg
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,154 @@
+%% =============================================================
+%% CV — Maia Bazerji (2 colonnes, style d’origine)
+%% Texte réel (pas d’image de texte) : extractible par ATS / PDF.
+%% Compiler : pdfLaTeX (ou XeLaTeX si vous activez fontspec + Lato)
+%% =============================================================
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[top=0mm, bottom=0mm, left=0mm, right=0mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{fontawesome5}
+
+\hypersetup{pdftitle={CV Maia Bazerji}, pdfauthor={Maia Bazerji}}
+
+\pagestyle{empty}
+
+% ---- Couleurs ----
+\definecolor{darknavy}{HTML}{1B2A4A}
+\definecolor{accent}{HTML}{0E7C7B}
+\definecolor{bodytext}{HTML}{2B2B2B}
+\definecolor{graytext}{HTML}{5A5A5A}
+\definecolor{sidebarbg}{HTML}{F0F2F5}
+\definecolor{divider}{HTML}{CCCCCC}
+
+% ---- Dimensions ----
+\newlength{\sidebarwidth}
+\setlength{\sidebarwidth}{76mm}
+\newlength{\mainwidth}
+\setlength{\mainwidth}{\dimexpr\paperwidth-\sidebarwidth\relax}
+\newlength{\sidepad}
+\setlength{\sidepad}{6mm}
+\newlength{\mainpad}
+\setlength{\mainpad}{7mm}
+
+% ---- Commandes ----
+\newcommand{\sidesection}[1]{%
+  \vspace{5pt}%
+  {\fontsize{9.5}{11}\selectfont\bfseries\color{accent}\MakeUppercase{#1}}\\[-3pt]%
+  {\color{accent}\rule{\dimexpr\sidebarwidth-2\sidepad\relax}{1.2pt}}%
+  \vspace{4pt}\par%
+}
+
+\newcommand{\mainsection}[1]{%
+  \vspace{6pt}%
+  {\fontsize{10.5}{12}\selectfont\bfseries\color{accent}\MakeUppercase{#1}}\\[-3pt]%
+  {\color{accent}\rule{\dimexpr\mainwidth-2\mainpad\relax}{1.2pt}}%
+  \vspace{4pt}\par%
+}
+
+\newcommand{\experienceentry}[4]{%
+  \vspace{3pt}%
+  {\fontsize{10}{12}\selectfont\bfseries\color{darknavy}#1}%
+  \hfill{\fontsize{8}{10}\selectfont\color{graytext}#2}\par\vspace{1pt}%
+  {\fontsize{8.5}{10}\selectfont\bfseries\color{accent}#3}%
+  \vspace{2pt}%
+  #4%
+  \vspace{2pt}%
+}
+
+\newcommand{\projectentry}[2]{%
+  \vspace{2pt}%
+  {\fontsize{8.5}{10}\selectfont\color{darknavy}\textbullet~~\bfseries#1}\par\vspace{1pt}%
+  {\fontsize{8}{10}\selectfont\color{bodytext}\hspace{2mm}#2}%
+  \vspace{3pt}\par%
+}
+
+\newcommand{\skillgroup}[2]{%
+  {\fontsize{7.5}{9}\selectfont\bfseries\color{darknavy}#1}\par\vspace{0.5pt}%
+  {\fontsize{7}{9}\selectfont\color{graytext}#2}%
+  \vspace{4pt}\par%
+}
+
+\newcommand{\eduentry}[3]{%
+  {\fontsize{8}{10}\selectfont\bfseries\color{darknavy}#1}\par\vspace{0.5pt}%
+  {\fontsize{7.5}{9}\selectfont\color{graytext}#2}\par\vspace{0.5pt}%
+  {\fontsize{7.5}{9}\selectfont\color{bodytext}#3}%
+  \vspace{5pt}\par%
+}
+
+\newlist{cvitems}{itemize}{1}
+\setlist[cvitems]{
+  label=\textbullet,
+  leftmargin=10pt,
+  itemsep=1.5pt,
+  parsep=0pt,
+  topsep=1pt,
+  partopsep=0pt
+}
+
+\begin{document}
+\begin{tikzpicture}[remember picture, overlay]
+
+% Fond bandeau gauche (visuel uniquement ; le texte est dans les nœuds)
+\fill[sidebarbg] (current page.north west) rectangle
+  ([xshift=\sidebarwidth]current page.south west);
+
+% ============================================================
+% Colonne gauche en premier dans le flux PDF (contact / compétences → mots-clés)
+% ============================================================
+\node[anchor=north west, inner sep=0pt] at
+  ([xshift=\sidepad, yshift=-10mm]current page.north west) {%
+\begin{minipage}[t]{\dimexpr\sidebarwidth-2\sidepad\relax}
+\centering
+
+\begin{tikzpicture}
+  \clip (0,0) circle (1.5cm);
+  \fill[white] (0,0) circle (1.5cm);
+  \node[anchor=center] at (0,0) {%
+    \IfFileExists{./data/profile_photo.jpg}{%
+      \includegraphics[width=3cm]{./data/profile_photo.jpg}%
+    }{}%
+  };
+\end{tikzpicture}
+
+\vspace{8pt}
+\raggedright
+
+\input{sections/contact}
+\input{sections/formation}
+\input{sections/langues}
+\input{sections/competences}
+\input{sections/engagement}
+
+\end{minipage}%
+};
+
+% ============================================================
+% Colonne droite : parcours détaillé (lu après la colonne gauche)
+% ============================================================
+\node[anchor=north west, inner sep=0pt] at
+  ([xshift=\dimexpr\sidebarwidth+\mainpad\relax, yshift=-10mm]current page.north west) {%
+\begin{minipage}[t]{\dimexpr\mainwidth-2\mainpad\relax}
+
+\input{sections/header}
+\input{sections/summary}
+\input{sections/experience}
+\input{sections/projects}
+
+\end{minipage}%
+};
+
+\end{tikzpicture}
+\end{document}
