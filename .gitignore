@@ -14,8 +14,10 @@
 *.snm
 *.vrb
 
-# Ancienne photo de secours (ne pas versionner)
-data/profile_photo_backup_blackbg.jpg
+# Donnees sensibles locales (ne pas versionner)
+data/
+images/
+img/
 
 # OS
 .DS_Store
