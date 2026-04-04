@@ -45,10 +45,10 @@
 
 % ---- Commandes ----
 \newcommand{\sidesection}[1]{%
-  \vspace{5pt}%
+  \vspace{3pt}%
   {\fontsize{9.5}{11}\selectfont\bfseries\color{accent}\MakeUppercase{#1}}\\[-3pt]%
   {\color{accent}\rule{\dimexpr\sidebarwidth-2\sidepad\relax}{1.2pt}}%
-  \vspace{4pt}\par%
+  \vspace{2.5pt}\par%
 }
 
 \newcommand{\mainsection}[1]{%
@@ -62,7 +62,7 @@
   \vspace{3pt}%
   {\fontsize{10}{12}\selectfont\bfseries\color{darknavy}#1}%
   \hfill{\fontsize{8}{10}\selectfont\color{graytext}#2}\par\vspace{1pt}%
-  {\fontsize{8.5}{10}\selectfont\bfseries\color{accent}#3}%
+  {\fontsize{8.5}{10}\selectfont\bfseries\color{accent}#3}\par%
   \vspace{2pt}%
   #4%
   \vspace{2pt}%
@@ -78,14 +78,14 @@
 \newcommand{\skillgroup}[2]{%
   {\fontsize{7.5}{9}\selectfont\bfseries\color{darknavy}#1}\par\vspace{0.5pt}%
   {\fontsize{7}{9}\selectfont\color{graytext}#2}%
-  \vspace{4pt}\par%
+  \vspace{2.5pt}\par%
 }
 
 \newcommand{\eduentry}[3]{%
   {\fontsize{8}{10}\selectfont\bfseries\color{darknavy}#1}\par\vspace{0.5pt}%
   {\fontsize{7.5}{9}\selectfont\color{graytext}#2}\par\vspace{0.5pt}%
   {\fontsize{7.5}{9}\selectfont\color{bodytext}#3}%
-  \vspace{5pt}\par%
+  \vspace{3pt}\par%
 }
 
 \newlist{cvitems}{itemize}{1}
@@ -109,21 +109,21 @@
 % Colonne gauche en premier dans le flux PDF (contact / compétences → mots-clés)
 % ============================================================
 \node[anchor=north west, inner sep=0pt] at
-  ([xshift=\sidepad, yshift=-10mm]current page.north west) {%
+  ([xshift=\sidepad, yshift=-3mm]current page.north west) {%
 \begin{minipage}[t]{\dimexpr\sidebarwidth-2\sidepad\relax}
 \centering
 
 \begin{tikzpicture}
-  \clip (0,0) circle (1.5cm);
-  \fill[white] (0,0) circle (1.5cm);
+  \clip (0,0) circle (1.35cm);
+  \fill[white] (0,0) circle (1.35cm);
   \node[anchor=center] at (0,0) {%
     \IfFileExists{./data/profile_photo.jpg}{%
-      \includegraphics[width=3cm]{./data/profile_photo.jpg}%
+      \includegraphics[width=2.7cm]{./data/profile_photo.jpg}%
     }{}%
   };
 \end{tikzpicture}
 
-\vspace{8pt}
+\vspace{3pt}
 \raggedright
 
 \input{sections/contact}
@@ -139,7 +139,7 @@
 % Colonne droite : parcours détaillé (lu après la colonne gauche)
 % ============================================================
 \node[anchor=north west, inner sep=0pt] at
-  ([xshift=\dimexpr\sidebarwidth+\mainpad\relax, yshift=-10mm]current page.north west) {%
+  ([xshift=\dimexpr\sidebarwidth+\mainpad\relax, yshift=-5mm]current page.north west) {%
 \begin{minipage}[t]{\dimexpr\mainwidth-2\mainpad\relax}
 
 \input{sections/header}
